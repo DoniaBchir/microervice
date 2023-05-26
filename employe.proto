@@ -1,0 +1,42 @@
+syntax = "proto3";
+package employe;
+
+// Définition du message employe
+message Employe {
+    string id = 1;
+    string title = 2;
+    string description = 3;
+}
+
+// Définition des messages de requête et de réponse pour les méthodes 
+message GetEmployeRequest {
+    string employe_id = 1;
+}
+
+message GetEmployeResponse {
+    Employe employe = 1;
+}
+
+message SearchEmployeRequest {
+    string query = 1;
+}
+
+message SearchEmployeResponse {
+    repeated Employe employes = 1;
+}
+
+message CreateEmployeRequest {
+  string title = 1;
+  string description = 2;
+}
+
+message CreateEmployeResponse {
+  Employe employe = 1;
+}
+
+// Définition du service de employe
+service EmployeService {
+    rpc GetEmploye(GetEmployeRequest) returns (GetEmployeResponse);
+    rpc SearchEmploye(SearchEmployeRequest) returns (SearchEmployeResponse);
+    rpc CreateEmploye(CreateEmployeRequest) returns (CreateEmployeResponse);
+}

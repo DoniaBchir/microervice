@@ -1,0 +1,43 @@
+syntax = "proto3";
+package departement;
+
+// Définition du message 
+message Departement {
+    string id = 1;
+    string title = 2;
+    string description = 3;
+// Ajouter d'autres champs de données pour les départements
+}
+
+// Définition des messages de requête et de réponse pour les méthodes
+message GetDepartementRequest {
+    string departement_id = 1;
+}
+
+message GetDepartementResponse {
+    Departement departement = 1;
+}
+
+message SearchDepartementRequest {
+    string query = 1;
+}
+
+message SearchDepartementResponse {
+    repeated Departement departements = 1;
+}
+
+message CreateDepartementRequest {
+  string title = 1;
+  string description = 2;
+}
+
+message CreateDepartementResponse {
+  Departement departement = 1;
+}
+
+// Définition du service 
+service DepartementService {
+    rpc GetDepartement(GetDepartementRequest) returns (GetDepartementResponse);
+    rpc SearchDepartement(SearchDepartementRequest) returns (SearchDepartementResponse);
+    rpc CreateDepartement(CreateDepartementRequest) returns (CreateDepartementResponse);
+}
